@@ -3,7 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Header from './Header/Header';
-import Results from './Results/Results';
+import Results from './ProductResults/ProductResults';
 import './App.scss';
 
 // Font Awesome library to set the icons that will be used
