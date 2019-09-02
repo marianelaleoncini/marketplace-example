@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import queryString from 'query-string';
 import axios, { AxiosResponse } from 'axios';
 import Item from '../ProductItem/ProductItem';
+import './ProductResults.scss';
 
 const item = {
   id: '123',
@@ -29,9 +30,11 @@ const Results: React.FC<RouteComponentProps> = props => {
     });
   });
   return (
-    <>
-      <Item item={item}></Item>
-    </>
+    <div className="product-results">
+      <div className="main-content">
+        <Item item={item}></Item>
+      </div>
+    </div>
   );
 };
 

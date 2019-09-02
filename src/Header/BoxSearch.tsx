@@ -1,9 +1,10 @@
 import './BoxSearch.scss';
 import React, { useState } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Input from '../core/Input/Input';
 import Button from '../core/Button/Button';
+import ic_Search from '../assets/images/ic_Search.png';
+import ic_Search2x from '../assets/images/ic_Search@2x.png.png';
 
 const BoxSearch: React.FC<RouteComponentProps> = (props) => {
   const [searchInput, setSearchInput] = useState('');
@@ -26,7 +27,7 @@ const BoxSearch: React.FC<RouteComponentProps> = (props) => {
           onChange={event => setSearchInput(event.target.value)}
         ></Input>
         <Button type="submit" className="box-search__button" aria-label="Buscar">
-          <FontAwesomeIcon className="box-search__button-icon" icon="search"></FontAwesomeIcon>
+          <img src={ic_Search} srcSet={`${ic_Search2x} 2x`} alt="Buscar" />
         </Button>
       </form>
     </div>

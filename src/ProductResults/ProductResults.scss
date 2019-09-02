@@ -1,0 +1,11 @@
+@import '../assets/variables.scss';
+
+.product-results {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    background: $light-grey;
+    .main-content {
+        background: $white;
+    }
+}
