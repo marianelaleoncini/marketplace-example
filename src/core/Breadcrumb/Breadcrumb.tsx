@@ -1,8 +1,12 @@
 import React from 'react';
+import BreadcrumbItem from './BreadcrumbItem';
+import './Breadcrumb.scss';
 
 const Breadcrumb: React.FC = () => (
-  <ol itemScope itemType="https://schema.org/BreadcrumbList">
-    <Breadcrumb></Breadcrumb>
+  <ol className="breadcrumb" itemScope itemType="https://schema.org/BreadcrumbList">
+    <BreadcrumbItem></BreadcrumbItem>
+    <BreadcrumbItem></BreadcrumbItem>
+    <BreadcrumbItem></BreadcrumbItem>
   </ol>
 );
 

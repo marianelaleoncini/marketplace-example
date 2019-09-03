@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 import queryString from 'query-string';
 import axios, { AxiosResponse } from 'axios';
 import Item from '../ProductItem/ProductItem';
 import './ProductResults.scss';
+import Breadcrumb from '../core/Breadcrumb/Breadcrumb';
 
 const item = {
   id: '123',
@@ -21,21 +22,29 @@ const item = {
 // todo: implement node middleware
 const endpoint = 'https://api.mercadolibre.com/sites/MLA/search?q=';
 
-const Results: React.FC<RouteComponentProps> = props => {
+const ProductResults: React.FC<RouteComponentProps> = ({ location }) => {
   useEffect(() => {
-    const searchString = queryString.parse(props.location.search).search;
+    const searchString = queryString.parse(location.search).search;
     // todo: change any to SearchResults when middleware is implemented
     axios.get(endpoint + searchString).then((response: AxiosResponse<any>) => {
       console.log(response);
     });
   });
   return (
-    <div className="product-results">
-      <div className="main-content">
-        <Item item={item}></Item>
+    <main className="main">
+      <div>
+        <Breadcrumb></Breadcrumb>
+        <div className="product-results container">
+          <Link className="product-results__item" to={`items/${item.id}`}>
+            <Item item={item}></Item>
+          </Link>
+          <Link className="product-results__item" to={`items/${item.id}`}>
+            <Item item={item}></Item>
+          </Link>
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 
-export default Results;
+export default ProductResults;

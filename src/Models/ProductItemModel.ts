@@ -1,3 +1,5 @@
+import { Price } from './PriceModel';
+
 export interface ProductItem {
   id: string;
   title: string;
@@ -5,10 +7,6 @@ export interface ProductItem {
   picture: string;
   condition: string;
   free_shipping: boolean;
-}
-
-export interface Price {
-  currency: string;
-  amount: number;
-  decimals: number;
+  sold_quantity?: number;
+  description?: string;
 }

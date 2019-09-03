@@ -6,12 +6,12 @@ import Button from '../core/Button/Button';
 import ic_Search from '../assets/images/ic_Search.png';
 import ic_Search2x from '../assets/images/ic_Search@2x.png.png';
 
-const BoxSearch: React.FC<RouteComponentProps> = (props) => {
+const BoxSearch: React.FC<RouteComponentProps> = ({ history }) => {
   const [searchInput, setSearchInput] = useState('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    props.history.push(`/items?search=${searchInput}`)
+    history.push(`/items?search=${searchInput}`);
   };
 
   return (

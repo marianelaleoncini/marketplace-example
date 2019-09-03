@@ -4,10 +4,10 @@ import './ProductItem.scss';
 import ic_shipping from './../assets/images/ic_shipping.png'
 import ic_shipping2x from './../assets/images/ic_shipping@2x.png.png'
 
-const ProductItem: React.FC<ProductItemProps> = ({ item }) => {
+const ProductItem: React.FC<ProductItemProps> = ({ item, className }) => {
   return (
-    <div className="product-item">
-      <img className="product-item__image" src={item.picture} alt={item.title} />
+    <div className={`product-item ${className}`}>
+      <img className="product-item__picture" src={item.picture} alt={item.title} />
       <div className="product-item__summary">
         <div className="product-item__price">
           <span>

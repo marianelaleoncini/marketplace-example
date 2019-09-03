@@ -1,0 +1,9 @@
+.breadcrumb__item {
+  padding-right: 0.5em;
+  &:not(:last-child) {
+    &::after {
+      content: '>';
+      padding-left: 0.5em; 
+    }
+  }
+}
