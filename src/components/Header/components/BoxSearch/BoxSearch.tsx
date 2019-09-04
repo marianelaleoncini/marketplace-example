@@ -18,15 +18,15 @@ const BoxSearch: React.FC<RouteComponentProps> = ({ history }) => {
     <div className="box-search">
       <form className="box-search__form" role="search" onSubmit={handleSubmit}>
         <Input
-          autoComplete="false"
-          autoFocus={true}
-          aria-label="Ingresa lo que estas buscando"
-          className="box-search__input"
-          placeholder="Nunca dejes de buscar"
+          autoComplete={'false'}
+          autoFocus
+          aria-label={'Ingresa lo que estas buscando'}
+          className={'box-search__input'}
+          placeholder={'Nunca dejes de buscar'}
           value={searchInput}
           onChange={event => setSearchInput(event.target.value)}
-        ></Input>
-        <Button type="submit" className="box-search__button" aria-label="Buscar">
+        />
+        <Button type={'submit'} className={'box-search__button'} aria-label={'Buscar'}>
           <img src={ic_Search} srcSet={`${ic_Search2x} 2x`} alt="Buscar" />
         </Button>
       </form>

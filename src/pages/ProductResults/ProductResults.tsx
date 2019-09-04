@@ -24,7 +24,7 @@ const endpoint = 'https://api.mercadolibre.com/sites/MLA/search?q=';
 
 const ProductResults: React.FC<RouteComponentProps> = ({ location }) => {
   useEffect(() => {
-    const searchString = queryString.parse(location.search).search;
+    const { search: searchString } = queryString.parse(location.search);
     // todo: change any to SearchResults when middleware is implemented
     axios.get(endpoint + searchString).then((response: AxiosResponse<any>) => {
       console.log(response);
@@ -33,13 +33,13 @@ const ProductResults: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <main className="main">
       <div>
-        <Breadcrumb></Breadcrumb>
+        <Breadcrumb />
         <div className="product-results container">
           <Link className="product-results__item" to={`items/${item.id}`}>
-            <ProductItem item={item}></ProductItem>
+            <ProductItem item={item} />
           </Link>
           <Link className="product-results__item" to={`items/${item.id}`}>
-            <ProductItem item={item}></ProductItem>
+            <ProductItem item={item} />
           </Link>
         </div>
       </div>
