@@ -1,4 +1,4 @@
-import { Price } from './PriceModel';
+import { Price } from './Price';
 
 export interface ProductItem {
   id: string;

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import queryString from 'query-string';
 import axios, { AxiosResponse } from 'axios';
-import Item from '../ProductItem/ProductItem';
 import './ProductResults.scss';
-import Breadcrumb from '../core/Breadcrumb/Breadcrumb';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import ProductItem from '../../components/ProductItem/ProductItem';
 
 const item = {
   id: '123',
@@ -36,10 +36,10 @@ const ProductResults: React.FC<RouteComponentProps> = ({ location }) => {
         <Breadcrumb></Breadcrumb>
         <div className="product-results container">
           <Link className="product-results__item" to={`items/${item.id}`}>
-            <Item item={item}></Item>
+            <ProductItem item={item}></ProductItem>
           </Link>
           <Link className="product-results__item" to={`items/${item.id}`}>
-            <Item item={item}></Item>
+            <ProductItem item={item}></ProductItem>
           </Link>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import Header from './Header/Header';
-import ProductResults from './ProductResults/ProductResults';
-import ProductDetail from './ProductDetail/ProductDetail';
+import ProductResults from './pages/ProductResults/ProductResults';
+import ProductDetail from './pages/ProductDetail/ProductDetail';
 import './App.scss';
+import Header from './components/Header/Header';
 
 const App: React.FC = () => {
   return (

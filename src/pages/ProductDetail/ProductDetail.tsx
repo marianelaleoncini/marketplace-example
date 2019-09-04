@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Button from '../core/Button/Button';
+import Button from '../../components/Button/Button';
 import { RouteComponentProps } from 'react-router-dom';
 
 const product = {

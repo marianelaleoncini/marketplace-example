@@ -1,4 +1,4 @@
-import { ProductItem } from "../Models/ProductItemModel";
+import { ProductItem } from "../../models/ProductItem";
 
 export interface ProductItemProps {
   item: ProductItem;

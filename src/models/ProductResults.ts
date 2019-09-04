@@ -1,5 +1,5 @@
-import { ProductItem } from "./ProductItemModel";
-import { Author } from "./AuthorModel";
+import { ProductItem } from "./ProductItem";
+import { Author } from "./Author";
 
 export interface SearchResults {
   author: Author;
