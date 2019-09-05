@@ -1,0 +1,31 @@
+.product-detail {
+  display: flex;
+  flex-wrap: wrap;
+  &__picture {
+    width: 680px;
+    padding: 0.2em;
+  }
+  &__summary {
+    padding-top: 2rem;
+  }
+  &__status {
+    font-size: 14px;
+    padding-bottom: 1em;
+  }
+  &__title {
+    font-size: 24px;
+  }
+  &__price {
+    font-size: 46px;
+    padding: 2rem 0;
+  }
+  &__description {
+    padding: 2rem 0 0 1rem;
+    &__title {
+      font-size: 28px;
+    }
+    &__info {
+      padding: 1em 0;
+    }
+  }
+}
