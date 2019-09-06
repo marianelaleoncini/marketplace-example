@@ -4,6 +4,7 @@ import cors from "cors";
 
 const bodyParser = require('body-parser');
 const itemsRouter = require('./routes/items');
+process.env.NODE_ENV = 'development';
 
 const app = express();
 app.use(cors());
