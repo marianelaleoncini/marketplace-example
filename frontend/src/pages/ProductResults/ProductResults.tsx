@@ -1,46 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import queryString from 'query-string';
 import axios, { AxiosResponse } from 'axios';
 import './ProductResults.scss';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import ProductItem from '../../components/ProductItem/ProductItem';
-
-const item = {
-  id: '123',
-  title: 'Ipod',
-  price: {
-    currency: 'ARS',
-    amount: 120,
-    decimals: 30
-  },
-  picture: 'http://mla-s1-p.mlstatic.com/948813-MLA31003000773_062019-I.jpg',
-  condition: 'Nuevo',
-  free_shipping: true
-};
+import { SearchResults } from '../../models/ProductResults';
+import { ProductItem as ProductItemModel } from '../../models/ProductItem';
 
 // todo: implement node middleware
 const endpoint = 'http://localhost:9000/items?q=';
 
 const ProductResults: React.FC<RouteComponentProps> = ({ location }) => {
+  const [items, setItems] = useState<Array<ProductItemModel>>([]);
+  const [categories, setCategories] = useState<Array<string>>([]);
+
   useEffect(() => {
     const { search: searchString } = queryString.parse(location.search);
-    // todo: change any to SearchResults when middleware is implemented
-    axios.get(endpoint + searchString).then((response: AxiosResponse<any>) => {
-      console.log(response);
+    axios.get(endpoint + searchString).then((response: AxiosResponse<SearchResults>) => {
+      setItems(response.data.items);
+      setCategories(response.data.categories);
     });
-  });
+  }, [location.search]);
+
   return (
     <main className="main">
       <div>
-        <Breadcrumb />
+        <Breadcrumb breadcrumbs={categories}/>
         <div className="product-results container">
-          <Link className="product-results__item" to={`items/${item.id}`}>
-            <ProductItem item={item} />
-          </Link>
-          <Link className="product-results__item" to={`items/${item.id}`}>
-            <ProductItem item={item} />
-          </Link>
+          {items.map(item => (
+            <Link className="product-results__item" to={`items/${item.id}`} key={item.id}>
+              <ProductItem item={item} />
+            </Link>
+          ))}
         </div>
       </div>
     </main>

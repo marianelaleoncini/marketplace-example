@@ -1,11 +1,13 @@
 import React from 'react';
-import BreadcrumbItem from './BreadcrumbItem';
+import BreadcrumbItem from './components/BreadcrumbItem';
 import './Breadcrumb.scss';
+import { BreadcrumbProps } from './BreadcrumbProps';
 
-const Breadcrumb: React.FC = () => (
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ breadcrumbs }) => (
   <ol className="breadcrumb" itemScope itemType="https://schema.org/BreadcrumbList">
-    <BreadcrumbItem />
-    <BreadcrumbItem />
+    {breadcrumbs.map((breadcrumb, index) => (
+      <BreadcrumbItem breadcrumb={breadcrumb} key={index} />
+    ))}
   </ol>
 );
 

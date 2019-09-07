@@ -29,7 +29,6 @@ const ProductDetail: React.FC<RouteComponentProps<{id: string}>> = ({ match }) =
   return (
     <main className="main">
       <div>
-        <Breadcrumb />
         <div className="product-detail container">
           <img className="product-detail__picture" src={product.picture} alt={product.title} />
           <div className="product-detail__summary">

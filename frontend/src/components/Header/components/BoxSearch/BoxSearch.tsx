@@ -7,7 +7,7 @@ import Input from '../../../Input/Input';
 import Button from '../../../Button/Button';
 
 const BoxSearch: React.FC<RouteComponentProps> = ({ history }) => {
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState<string>('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
