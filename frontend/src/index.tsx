@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 WebFont.load({
   google: {
-    families: ['Roboto:400,700', 'sans-serif']
+    families: ['Raleway:400,700', 'sans-serif']
   }
 });
 

@@ -1,31 +1,55 @@
 .product-detail {
   display: flex;
   flex-wrap: wrap;
-  &__picture {
-    width: 680px;
-    padding: 0.2em;
+  font-size: 16px;
+  padding: 2em;
+
+  &__main-info {
+    display: flex;
+    width: 100%;
   }
+
+  &__picture-container {
+    display: flex;
+    justify-content: center;
+    width: 680px;
+    padding-right: 2em;
+  }
+
+  &__picture {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+  }
+
   &__summary {
+    display: flex;
+    flex-direction: column;
     padding-top: 2rem;
   }
+
   &__status {
     font-size: 14px;
     padding-bottom: 1em;
   }
+
   &__title {
     font-size: 24px;
   }
+
   &__price {
     font-size: 46px;
     padding: 2rem 0;
   }
+
   &__description {
-    padding: 2rem 0 0 1rem;
+    width: 100%;
+    padding-top: 2rem;
     &__title {
       font-size: 28px;
     }
     &__info {
-      padding: 1em 0;
+      padding-top: 2em;
     }
   }
 }

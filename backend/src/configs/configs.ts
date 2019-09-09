@@ -7,7 +7,8 @@ export const configs: IData = {
       lastname: 'Leoncini'
     },
     search_results_count: 4,
-    decimal_separator: '.'
+    decimal_separator: '.',
+    cache_length: 20
   }
 };
 

@@ -1,20 +1,48 @@
+@import '../../assets/variables.scss';
+
 .product-item {
-  font-size: 16px;
   display: flex;
-  &__picture {
+  font-size: 16px;
+  width: 100%;
+
+  &__picture-container {
+    display: flex;
+    justify-content: center;
     width: 180px;
     height: 180px;
-    border-radius: 4px;
     padding-right: 1em;
   }
-  &__price {
+
+  &__picture {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  &__summary {
+    width: 80%;
+  }
+
+  &__header {
+    display: flex;
     font-size: 1.5em;
-    padding: 1rem 0;
+    justify-content: space-between;
+    align-items: flex-end;
+    &__price {
+      padding-top: 1rem;
+    }
+    &__shipping {
+      padding-left: 0.5em;
+    }
+    &__location {
+      font-size: 0.5em;
+      color: $grey;
+    }
   }
-  &__shipping {
-    padding-left: 0.5em;
-  }
+
   &__title {
     font-size: 1.125em;
+    padding-top: 1rem;
   }
 }

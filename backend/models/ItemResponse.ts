@@ -1,9 +1,4 @@
-export interface SearchResponse {
-  results: Array<Result>;
-  filters: Array<Filter>;
-}
-
-export interface Result {
+export interface ItemResponse {
   id: string;
   title: string;
   price: number;
@@ -20,25 +15,17 @@ export interface Result {
   shipping: {
     free_shipping: false;
   };
+  pictures: Array<Picture>;
   attributes: Array<Attribute>;
 }
 
-interface Filter {
-  id: string;
-  name: string;
-  type: string;
-  values: Array<FilterValue>;
-}
-
-interface FilterValue {
-  id: string;
-  name: string;
-  path_from_root: Array<PathFromRoot>;
-}
-
-interface PathFromRoot {
-  id: string;
-  name: string;
+interface Picture {
+  id: string,
+  url: string,
+  secure_url: string,
+  size: string,
+  max_size: string,
+  quality: string
 }
 
 interface Attribute {

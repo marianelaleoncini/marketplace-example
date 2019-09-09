@@ -1,4 +1,5 @@
 import { RouteComponentProps } from "react-router-dom";
 
-export interface ProductDetailsProps extends RouteComponentProps {
+export interface ProductDetailsProps extends RouteComponentProps<{id:string}> {
+
 }
