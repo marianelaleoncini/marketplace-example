@@ -1,17 +1,22 @@
 import './ProductDetail.scss';
 import React, { useEffect, useState } from 'react';
-import Button from '../../components/Button/Button';
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse, AxiosError } from 'axios';
 import { ProductItem } from '../../models/ProductItem';
 import { ProductItemResponse } from '../../models/ProductItemResponse';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import { ProductDetailsProps } from './ProductDetailsProps';
+import Spinner from '../../components/Spinner/Spinner';
+import ProductImage from '../../components/ProductImage/ProductImage';
+import ProductSummary from '../../components/ProductSummary/ProductSummary';
+import ProductDescription from '../../components/ProductDescription/ProductDescription';
+import { toast } from 'react-toastify';
 
 const endpoint = 'http://localhost:9000/items/';
 
 const ProductDetail: React.FC<ProductDetailsProps> = ({ match, location }) => {
   const [product, setProduct] = useState<ProductItem>();
   const [categories, setCategories] = useState<Array<string>>([]);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     setCategories(location.state ? location.state.categories : []);
@@ -22,10 +27,17 @@ const ProductDetail: React.FC<ProductDetailsProps> = ({ match, location }) => {
       .then((response: AxiosResponse<ProductItemResponse>) => {
         setProduct(response.data.item);
       })
-      .catch(error => {
-        console.log(error);
+      .catch(err => {
+        setError(true);
+        toast.error(err.message);
       });
   }, [match, location]);
+
+  if (!product && !error) {
+    return <Spinner />;
+  } else if (error) {
+    return <div>Error</div>;
+  }
 
   return (
     <main className="main">
@@ -34,27 +46,16 @@ const ProductDetail: React.FC<ProductDetailsProps> = ({ match, location }) => {
           <Breadcrumb breadcrumbs={categories} />
           <div className="product-detail container">
             <div className="product-detail__main-info">
-              <div className="product-detail__picture-container">
-                <img className="product-detail__picture" src={product.picture} alt={product.title} />
-              </div>
-              <div className="product-detail__summary">
-                <div className="product-detail__status">
-                  {product.condition} - {product.sold_quantity} vendidos
-                </div>
-                <div className="product-detail__title">{product.title}</div>
-                <div className="product-detail__price">
-                  {product.price.currency} {product.price.amount}
-                  {product.price.decimalsSeparator}
-                  {product.price.decimals}
-                </div>
-                <Button className="primary">Comprar</Button>
-              </div>
+              <ProductImage title={product.title} picture={product.picture} />
+              <ProductSummary
+                condition={product.condition}
+                soldQuantity={product.sold_quantity}
+                title={product.title}
+                price={product.price}
+              />
             </div>
 
-            <div className="product-detail__description">
-              <div className="product-detail__description__title">Descripción del Producto</div>
-              <div className="product-detail__description__info">{product.description}</div>
-            </div>
+            <ProductDescription description={product.description} />
           </div>
         </div>
       )}

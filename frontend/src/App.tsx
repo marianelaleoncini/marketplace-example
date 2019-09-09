@@ -4,11 +4,13 @@ import ProductResults from './pages/ProductResults/ProductResults';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import './App.scss';
 import Header from './components/Header/Header';
+import { ToastContainer } from 'react-toastify';
 
 const App: React.FC = () => {
   return (
     <>
       <Router>
+        <ToastContainer />
         <Header />
         <Switch>
           <Route exact path="/"></Route>

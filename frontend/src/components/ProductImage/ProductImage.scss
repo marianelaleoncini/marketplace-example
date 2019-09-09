@@ -1,0 +1,12 @@
+.product-image {
+  display: flex;
+  justify-content: center;
+  width: 680px;
+  padding-right: 2em;
+
+  &__picture {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+  }
+}
