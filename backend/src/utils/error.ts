@@ -9,7 +9,7 @@ export const handleError = (res: Response, error: AxiosError<Error>) => {
   } else if (error.code) {
     status = +error.code;
   }
-  const message = error.response ? error.response.data.message : error.message
+  const message = error.response ? error.response.data.message : error.message;
   res.status(status).json({
     message
   });

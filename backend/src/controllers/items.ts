@@ -15,10 +15,11 @@ const environmentConfig = configs[environment];
 const cacheItems = new LRUcache<string, ProductItem>({ max: environmentConfig.cache_length });
 
 const getItems = async (req: Request, res: Response) => {
-  const response = await getItemsRequest(req.query.q, res);
+  const response = await getItemsRequest(req.query.q);
   res.status(200).json({
     items: await mapItems(response, res),
-    categories: mapCategories(response)
+    categories: mapCategories(response),
+    author: environmentConfig.author
   });
 };
 
@@ -27,45 +28,60 @@ const getItem = async (req: Request, res: Response) => {
   let item: ProductItem | undefined;
   if (cacheItems.has(itemId)) {
     item = cacheItems.get(itemId);
+    res.status(200).json({
+      item,
+      author: environmentConfig.author
+    });
   } else {
     try {
-      const response = await getItemRequest(itemId, res);
+      const response = await getItemRequest(itemId);
       item = await mapItem(response, res);
+      res.status(200).json({
+        item,
+        author: environmentConfig.author
+      });
     } catch (error) {
       handleError(res, error);
     }
   }
-  res.status(200).json({
-    item
-  });
 };
 
 const mapItems = async (response: SearchResponse, res: Response): Promise<Array<ProductItem>> => {
   const items: Array<ProductItem> = [];
   for (let i = 0; i < environmentConfig.search_results_count; i++) {
     const item = { ...response.results[i] };
-    const itemResponse = await getItemRequest(item.id, res);
-    const mappedItem = await mapItem(itemResponse, res);
+    try {
+      const itemResponse = await getItemRequest(item.id);
+      const mappedItem = await mapItem(itemResponse, res);
 
-    cacheItems.set(item.id, mappedItem);
+      cacheItems.set(item.id, mappedItem);
 
-    const currentItem: ProductItem = {
-      id: item.id,
-      title: item.title,
-      price: mapPrice(item.price, item.currency_id),
-      picture: getOnePicture(itemResponse),
-      condition: mapCondition(item),
-      free_shipping: item.shipping.free_shipping,
-      location: item.address.state_name
-    };
+      const currentItem: ProductItem = {
+        id: item.id,
+        title: item.title,
+        price: mapPrice(item.price, item.currency_id),
+        picture: getOnePicture(itemResponse),
+        condition: mapCondition(item),
+        free_shipping: item.shipping.free_shipping,
+        location: item.address.state_name
+      };
 
-    items.push(currentItem);
+      items.push(currentItem);
+    } catch (error) {
+      handleError(res, error);
+    }
   }
   return items;
 };
 
 const mapItem = async (response: ItemResponse, res: Response): Promise<ProductItem> => {
-  const description = await getItemDescriptionRequest(response.id, res);
+  let description;
+  try {
+    description = await getItemDescriptionRequest(response.id);
+  } catch (error) {
+    handleError(res, error);
+    description = '';
+  }
   const item: ProductItem = {
     id: response.id,
     title: response.title,
@@ -103,6 +119,6 @@ const mapPrice = (price: number, currencyCode: string): Price => {
 const mapCondition = (response: Result | ItemResponse): string => {
   const condition = response.attributes.find(attribute => attribute.id === ITEM_CONDITION_ATTRIBUTE);
   return condition ? condition.value_name : '';
-}
+};
 
 export { getItems, getItem };
