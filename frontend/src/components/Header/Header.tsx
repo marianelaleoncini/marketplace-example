@@ -1,8 +1,8 @@
-import React from 'react';
-import BoxSearch from './components/BoxSearch/BoxSearch';
 import './Header.scss';
 import Logo_ML from '../../assets/images/Logo_ML.png';
 import Logo_ML2x from '../../assets/images/Logo_ML@2x.png.png';
+import React from 'react';
+import BoxSearch from './components/BoxSearch/BoxSearch';
 
 const Header: React.FC = () => {
   return (

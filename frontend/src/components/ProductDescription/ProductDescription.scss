@@ -1,6 +1,8 @@
 .description {
   width: 100%;
   padding-top: 2rem;
+
+  word-break: break-word;
   &__title {
     font-size: 28px;
   }

@@ -1,5 +1,5 @@
-import React from 'react';
 import './ProductDescription.scss';
+import React from 'react';
 import { ProductDescriptionProps } from './ProductDescriptionProps';
 
 const ProductDescription: React.FC<ProductDescriptionProps> = ({ description }) => {

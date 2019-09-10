@@ -1,8 +1,8 @@
-import React from 'react';
-import { ProductItemProps } from './ProductItemProps';
 import './ProductItem.scss';
 import ic_shipping from '../../assets/images/ic_shipping.png';
 import ic_shipping2x from '../../assets/images/ic_shipping@2x.png.png';
+import React from 'react';
+import { ProductItemProps } from './ProductItemProps';
 
 const ProductItem: React.FC<ProductItemProps> = ({ item }) => {
   return (

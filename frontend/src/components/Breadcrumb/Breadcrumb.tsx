@@ -1,7 +1,7 @@
-import React from 'react';
-import BreadcrumbItem from './components/BreadcrumbItem';
 import './Breadcrumb.scss';
+import React from 'react';
 import { BreadcrumbProps } from './BreadcrumbProps';
+import BreadcrumbItem from './components/BreadcrumbItem';
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ breadcrumbs }) => (
   <ol className="breadcrumb" itemScope itemType="https://schema.org/BreadcrumbList">
@@ -12,6 +12,3 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ breadcrumbs }) => (
 );
 
 export default Breadcrumb;
-/* {breadcrumList.map(breadcrumbItem => (
-  <Breadcrumb item={breadcrumbItem}></Breadcrumb>
-))} */

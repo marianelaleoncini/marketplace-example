@@ -1,4 +1,4 @@
-export const configs: IData = {
+export const configs: Data = {
   development: {
     config_id: 'development',
     node_port: 9000,
@@ -12,6 +12,6 @@ export const configs: IData = {
   }
 };
 
-interface IData {
-    [ key: string ]: any;
+interface Data {
+  [key: string]: any;
 }

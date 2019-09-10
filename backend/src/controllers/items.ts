@@ -15,12 +15,16 @@ const environmentConfig = configs[environment];
 const cacheItems = new LRUcache<string, ProductItem>({ max: environmentConfig.cache_length });
 
 const getItems = async (req: Request, res: Response) => {
-  const response = await getItemsRequest(req.query.q);
-  res.status(200).json({
-    items: await mapItems(response, res),
-    categories: mapCategories(response),
-    author: environmentConfig.author
-  });
+  try {
+    const response = await getItemsRequest(req.query.q);
+    res.status(200).json({
+      items: await mapItems(response, res),
+      categories: mapCategories(response),
+      author: environmentConfig.author
+    });
+  } catch (error) {
+    handleError(res, error);
+  }
 };
 
 const getItem = async (req: Request, res: Response) => {
@@ -80,7 +84,6 @@ const mapItem = async (response: ItemResponse, res: Response): Promise<ProductIt
     description = await getItemDescriptionRequest(response.id);
   } catch (error) {
     handleError(res, error);
-    description = '';
   }
   const item: ProductItem = {
     id: response.id,
@@ -90,7 +93,7 @@ const mapItem = async (response: ItemResponse, res: Response): Promise<ProductIt
     condition: mapCondition(response),
     free_shipping: response.shipping.free_shipping,
     sold_quantity: response.sold_quantity,
-    description: description.plain_text
+    description: description ? description.plain_text : ''
   };
   return item;
 };

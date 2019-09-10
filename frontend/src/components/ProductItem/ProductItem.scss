@@ -26,9 +26,10 @@
 
   &__header {
     display: flex;
-    font-size: 1.5em;
     justify-content: space-between;
     align-items: flex-end;
+    flex-wrap: wrap;
+    font-size: 24px;
     &__price {
       padding-top: 1rem;
     }
@@ -42,7 +43,7 @@
   }
 
   &__title {
-    font-size: 1.125em;
+    font-size: 18px;
     padding-top: 1rem;
   }
 }

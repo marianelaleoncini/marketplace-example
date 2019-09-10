@@ -1,16 +1,18 @@
+import './ProductResults.scss';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import queryString from 'query-string';
-import axios, { AxiosResponse } from 'axios';
-import './ProductResults.scss';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
-import ProductItem from '../../components/ProductItem/ProductItem';
+import axios, { AxiosResponse, AxiosError } from 'axios';
+import { configs } from '../../configs';
+import { showError } from '../../helpers/showError';
 import { SearchResults } from '../../models/ProductResults';
 import { ProductItem as ProductItemModel } from '../../models/ProductItem';
+import { Error } from '../../models/Error';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import ProductItem from '../../components/ProductItem/ProductItem';
 import Spinner from '../../components/Spinner/Spinner';
-import { toast } from 'react-toastify';
 
-const endpoint = 'http://localhost:9000/items?q=';
+const { apiUrl } = configs[process.env.NODE_ENV];
 
 const ProductResults: React.FC<RouteComponentProps> = ({ location }) => {
   const [items, setItems] = useState<Array<ProductItemModel>>([]);
@@ -20,21 +22,21 @@ const ProductResults: React.FC<RouteComponentProps> = ({ location }) => {
   useEffect(() => {
     const { search: searchString } = queryString.parse(location.search);
     axios
-      .get(endpoint + searchString)
+      .get(`${apiUrl}/items?q=${searchString}`)
       .then((response: AxiosResponse<SearchResults>) => {
         setItems(response.data.items);
         setCategories(response.data.categories);
       })
-      .catch(err => {
+      .catch((error: AxiosError<Error>) => {
         setError(true);
-        toast.error(err.message);
+        showError(error);
       });
   }, [location]);
 
   if (!items.length && !error) {
-   return <Spinner />
+    return <Spinner />;
   } else if (error) {
-    return <div>Error</div>
+    return <Link to="/" />;
   }
   return (
     <main className="main">

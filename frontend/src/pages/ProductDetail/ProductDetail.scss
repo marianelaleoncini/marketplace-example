@@ -7,5 +7,8 @@
   &__main-info {
     display: flex;
     width: 100%;
+    @media screen and (max-width: 700px) {
+      flex-wrap: wrap;
+    }
   }
 }

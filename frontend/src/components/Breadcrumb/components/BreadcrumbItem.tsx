@@ -1,5 +1,5 @@
-import React from 'react';
 import './BreadcrumbItem.scss';
+import React from 'react';
 import { BreadcrumbItemProps } from './BreadcrumbItemProps';
 
 const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ breadcrumb }) => (

@@ -1,5 +1,5 @@
-import React from 'react';
 import './ProductImage.scss';
+import React from 'react';
 import { ProductImageProps } from './ProductImageProps';
 
 const ProductImage: React.FC<ProductImageProps> = ({picture, title}) => {
